@@ -1,0 +1,11 @@
+extends:
+  - "next/core-web-vitals"
+rules:
+  quotes:
+    - error
+    - double
+  semi:
+    - error
+    - always
+  no-unused-vars: error
+  no-unused-expressions: error
