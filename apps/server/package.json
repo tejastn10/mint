@@ -2,14 +2,11 @@
 	"name": "@mint/server",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
 		"watch-ts": "tsc -w",
-		"build": "tsc",
-		"start": "ts-node-dev --quiet --respawn ./src/server.ts",
-		"watch": "tsc-watch --onSuccess 'npm run start'",
-		"server": "concurrently -k -p \"[{name}]\" -n \"Server\" -c \"yellow.bold\" \"npm run start\"",
-		"dev": "npm run start",
+		"build": "esbuild src/server.ts --bundle --minify --tree-shaking=true --sourcemap --platform=node --outfile=dist/server.js",
+		"dev": "node build.js && node ./dist/server.js",
 		"lint": "eslint --cache --fix",
 		"format": "prettier --write ."
 	},
@@ -28,12 +25,9 @@
 		"@typescript-eslint/eslint-plugin": "^5.38.1",
 		"@typescript-eslint/parser": "^5.38.1",
 		"concurrently": "^7.4.0",
+		"esbuild": "^0.15.17",
 		"eslint": "^8.24.0",
-		"nodemon": "^2.0.20",
 		"prettier": "^2.7.1",
-		"ts-node": "^10.9.1",
-		"ts-node-dev": "^2.0.0",
-		"tsc-watch": "^5.0.3",
 		"tsconfig": "^7.0.0",
 		"typescript": "^4.8.4"
 	}
